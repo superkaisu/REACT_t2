@@ -1,22 +1,25 @@
 import React from "react";
 import { addNewWord } from "./ApiSerivce";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 // DOES NOT WORK PROPERLY?
 function AddWord() {
-  const [word, setWord] = useState([]);
+  var word = "";
   const [translation, setTranslation] = useState("");
   const [finnish, setFinnish] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const newWord = finnish + translation;
-    setWord(newWord);
+    const newWord = `{"fin": "${finnish}", "eng": "${translation}"}`;
+    word = newWord;
 
     console.log(word);
+    var JSONstring = JSON.parse(word);
+    console.log(JSONstring);
 
     try {
-      await addNewWord(newWord);
+      await addNewWord(JSONstring);
       console.log("Word added");
     } catch (error) {
       console.error("Error adding word", error);
@@ -43,6 +46,10 @@ function AddWord() {
         />
         <input name="submit" id="submit" type="Submit" value="Lisää" />
       </form>
+      <br></br>
+      <button style={{ padding: "10px", margin: "10px" }}>
+        <Link to="/">Etusivulle</Link>
+      </button>
     </div>
   );
 }
