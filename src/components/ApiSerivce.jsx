@@ -29,22 +29,25 @@ export const getWord = async (searchWord) => {
 // Backend funktio tarvitsee JSON-objectin, joka sisältää sanan ja käännöksen
 export const addNewWord = async (wordString) => {
   const path = "http://localhost:3000/words";
-  //const settings = {
+
+  console.log(wordString);
 
   try {
-    const response = await fetch(path, {
+    const response = await fetch(path, { //Tää jää tähän aina kiinni, koska headers puuttuu?
       method: "POST",
+      mode: "cors",
       headers: {
-        Accept: "application/json",
         "Content-Type": "application/json",
+        "Accept": "application/json",
       },
       body: wordString,
     });
     const data = await response.json();
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    return response.json();
+    return data;
   } catch (error) {
     console.error("Error adding word", error);
     throw error;

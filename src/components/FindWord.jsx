@@ -44,7 +44,7 @@ function FindWord() {
         />
         <input type="submit" name="search" id="search" value="Etsi" />
       </form>
-      <input id="fetchedWord" />
+      <textarea id="fetchedWord" rows={2} cols={30} wrap="soft" />
       <br></br>
       <button style={{ padding: "10px", margin: "10px" }}>
         <Link to="/">Etusivulle</Link>

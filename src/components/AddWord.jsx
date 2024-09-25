@@ -1,5 +1,5 @@
 import React from "react";
-import { addNewWord } from "./ApiSerivce";
+import { addNewWord, getAllWords } from "./ApiSerivce";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -15,15 +15,19 @@ function AddWord() {
     word = newWord;
 
     console.log(word);
-    var JSONstring = JSON.parse(word);
-    console.log(JSONstring);
 
     try {
-      await addNewWord(JSONstring);
-      console.log("Word added");
+      await addNewWord(word);
+
+      // Clear the input fields
+      document.getElementById("newWordFin").value = "";
+      document.getElementById("newWordEng").value = "";
+
     } catch (error) {
       console.error("Error adding word", error);
     }
+
+    getAllWords();
   };
 
   return (
