@@ -3,7 +3,6 @@ import { addNewWord, getAllWords } from "./ApiSerivce";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-// DOES NOT WORK PROPERLY?
 function AddWord() {
   var word = "";
   const [translation, setTranslation] = useState("");
@@ -22,7 +21,6 @@ function AddWord() {
       // Clear the input fields
       document.getElementById("newWordFin").value = "";
       document.getElementById("newWordEng").value = "";
-
     } catch (error) {
       console.error("Error adding word", error);
     }

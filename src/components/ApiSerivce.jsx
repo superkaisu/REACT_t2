@@ -33,12 +33,12 @@ export const addNewWord = async (wordString) => {
   console.log(wordString);
 
   try {
-    const response = await fetch(path, { //Tää jää tähän aina kiinni, koska headers puuttuu?
+    const response = await fetch(path, {
       method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json", //tarviiko tämä "" Acceptin ympärille? Prettier formatoi näin.
       },
       body: wordString,
     });
